@@ -1,0 +1,28 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Login</title>
+    <link rel="stylesheet" href="{% static 'css/mylogin.css' %}">
+</head>
+<body class="login-body">
+    <div class="login-container neon-form">
+    <h2>Django</h2>
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'dashboard:login' %}">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- Register link -->
+    <p>New here? <a href="{% url 'dashboard:register' %}">Register</a> first before logging in.</p>
+</div>
+</body>
+</html>

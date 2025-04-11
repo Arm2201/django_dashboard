@@ -1,0 +1,67 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authorization</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body class="dashboard-body">
+
+<aside class="sidebar">
+    <div class="sidebar-header">Custom Admin</div>
+    <ul class="nav-links">
+        <li><a href="{% url 'dashboard:custom_admin_dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'dashboard:users' %}">Users</a></li>
+        <li><a href="{% url 'dashboard:authorization' %}">Authorization</a></li>
+        <li><a href="{% url 'dashboard:reports' %}">Reports</a></li>
+        <li><a href="{% url 'dashboard:logout' %}">Logout</a></li>
+    </ul>
+</aside>
+
+<main class="main-content">
+    <header class="header">
+        <h2>Manage Authorization</h2>
+    </header>
+
+    <section class="cards">
+        <form method="POST" action="{% url 'dashboard:authorization' %}">
+            {% csrf_token %}
+            <table style="width: 100%; background: #e6ccff; color: black; border-collapse: collapse; font-size: 18px;">
+                <thead style="background-color: #d1b3ff;">
+                    <tr>
+                        <th style="padding: 16px; border-bottom: 2px solid #a64dff;">Username</th>
+                        <th style="padding: 16px; border-bottom: 2px solid #a64dff;">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td style="padding: 16px; border-bottom: 1px solid #9e5fff;">{{ user.username }}</td>
+                        <td style="padding: 16px; border-bottom: 1px solid #9e5fff;">
+                            <select name="role_{{ user.id }}" style="padding: 10px 14px; font-size: 16px; background-color: #fff; color: #333; border-radius: 5px;">
+                                <option value="member" {% if not user.is_staff %}selected{% endif %}>Member</option>
+                                <option value="staff" {% if user.is_staff and not user.is_superuser %}selected{% endif %}>Staff</option>
+                                <option value="admin" {% if user.is_staff and user.is_superuser %}selected{% endif %}>Admin</option>
+                            </select>
+                            <input type="hidden" name="user_id_{{ user.id }}" value="{{ user.id }}">
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="2" style="text-align: center;">No users found.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div style="margin-top: 20px;">
+                <button type="submit" style="background-color: #4CAF50; color: white; font-size: 18px; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer;">
+                    Update Roles
+                </button>
+            </div>
+        </form>
+    </section>
+
+</main>
+
+</body>
+</html>

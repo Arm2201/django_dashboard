@@ -1,0 +1,52 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body class="dashboard-body">
+
+<aside class="sidebar">
+    <div class="sidebar-header">Custom Admin</div>
+    <ul class="nav-links">
+        <li><a href="{% url 'dashboard:custom_admin_dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'dashboard:users' %}">Users</a></li>
+        <li><a href="{% url 'dashboard:authorization' %}">Authorization</a></li>
+        <li><a href="{% url 'dashboard:reports' %}">Reports</a></li>
+        <li><a href="{% url 'dashboard:logout' %}">Logout</a></li>
+    </ul>
+</aside>
+
+<main class="main-content">
+    <header class="header">
+        <h2>Registered Users</h2>
+    </header>
+
+    <section class="cards">
+        <table style="width: 100%; background: #e6ccff; color: black; border-collapse: collapse;">
+            <thead style="background-color: #d1b3ff;">
+                <tr>
+                    <th style="padding: 10px; border-bottom: 1px solid #a64dff;">Username</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #a64dff;">Email</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #a64dff;">Date Joined</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #9e5fff;">{{ user.username }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #9e5fff;">{{ user.email }}</td>
+                    <td style="padding: 10px; border-bottom: 1px solid #9e5fff;">{{ user.date_joined|date:"Y-m-d H:i" }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="3">No users found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+body.dashboard-body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1f0036, #270062, #4e00a8);
+    color: #fff;
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 220px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 30px 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.sidebar-header {
+    font-size: 1.6em;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 20px 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 1em;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #00ffff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    max-height: calc(100vh - 40px); /* Prevent overflow */
+}
+
+
+.header h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.1);
+    transition: 0.3s;
+}
+
+.card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.card.pink {
+    border-left: 5px solid #ff4ecd;
+}
+
+.card.blue {
+    border-left: 5px solid #00eaff;
+}
+
+.card.purple {
+    border-left: 5px solid #9c6bff;
+}
+
+.chart-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    .cards {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .header h2 {
+        font-size: 1.5em;
+    }
+
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+.user-table {
+    background-color: #f3e5f5; /* light purple */
+    color: #333;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #d1c4e9;
+}
+
+.user-table th, .user-table td {
+    border: 1px solid #d1c4e9;
+    padding: 8px 12px;
+}
+
+/* Add this to your CSS file for button styling */
+.btn-grant {
+    background-color: #66cc66;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-revoke {
+    background-color: #ff6666;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-grant:hover {
+    background-color: #4CAF50;
+}
+
+.btn-revoke:hover {
+    background-color: #f44336;
+}
